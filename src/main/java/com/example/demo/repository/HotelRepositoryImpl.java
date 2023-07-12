@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.repository.modelo.Habitacion;
 import com.example.demo.repository.modelo.Hotel;
 
 import jakarta.persistence.EntityManager;
@@ -18,30 +19,7 @@ public class HotelRepositoryImpl implements IHotelRepository{
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	@Override
-	public void insertar(Hotel hotel) {
-		// TODO Auto-generated method stub
-		this.entityManager.persist(hotel);
-	}
 
-	@Override
-	public void actualizar(Hotel hotel) {
-		// TODO Auto-generated method stub
-		this.entityManager.merge(hotel);
-	}
-
-	@Override
-	public void eliminar(Integer id) {
-		// TODO Auto-generated method stub
-		Hotel hot= this.buscar(id);
-		this.entityManager.remove(hot);
-	}
-
-	@Override
-	public Hotel buscar(Integer id) {
-		// TODO Auto-generated method stub
-		return this.entityManager.find(Hotel.class, id);
-	}
 
 	//unidad3
 	
@@ -59,7 +37,47 @@ public class HotelRepositoryImpl implements IHotelRepository{
 		return myQuery.getResultList();
 		*/
 		TypedQuery<Hotel> myQuery =
-                this.entityManager.createQuery("SELECT h from Hotel h JOIN h.habitaciones ha",Hotel.class);
+                this.entityManager.createQuery("SELECT h from Hotel h INNER JOIN h.habitaciones ha",Hotel.class);
+        return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Hotel> seleccionarOuterRightJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Hotel> myQuery =
+                this.entityManager.createQuery("SELECT h from Hotel h RIGHT JOIN h.habitaciones ha",Hotel.class);
+        return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Hotel> seleccionarOuterLeftJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Hotel> myQuery =
+                this.entityManager.createQuery("SELECT h from Hotel h LEFT JOIN h.habitaciones ha",Hotel.class);
+        return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Habitacion> seleccionarHabitacionesOuterLeftJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Habitacion> myQuery =
+                this.entityManager.createQuery("SELECT ha from Hotel h LEFT JOIN h.habitaciones ha",Habitacion.class);
+        return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Habitacion> seleccionarHabitacionesOuterFulltJoin() {
+		TypedQuery<Habitacion> myQuery =
+                this.entityManager.createQuery("SELECT ha from Hotel h FULL JOIN h.habitaciones ha",Habitacion.class);
+        return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Hotel> seleccionarWhereJoin() {
+
+		//SELECT h FROM Hotel h, Habitacion ha WHERE h=ha.hotel
+		TypedQuery<Hotel> myQuery =
+                this.entityManager.createQuery("SELECT h FROM Hotel h, Habitacion ha WHERE h=ha.hotel",Hotel.class);
         return myQuery.getResultList();
 	}
 

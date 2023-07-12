@@ -30,10 +30,9 @@ public class Hotel {
 	@Column(name="hot_direccion")
 	private String direccion;
 	
-	@OneToMany(mappedBy="hotel",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany
 	private List<Habitacion> habitaciones;
 
-	//set y get
 	public Integer getId() {
 		return id;
 	}
@@ -71,6 +70,23 @@ public class Hotel {
 		return "Hotel [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", habitaciones=" + habitaciones
 				+ "]";
 	}
+
+	public Hotel(Integer id, String nombre, String direccion, List<Habitacion> habitaciones) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.habitaciones = habitaciones;
+	}
+
+	public Hotel() {
+		
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	//set y get
+	
 	
 
 }

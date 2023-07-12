@@ -14,29 +14,7 @@ public class HabitacionServiceImpl implements IHabitacionService{
 	@Autowired
 	private IHabitacionRepository habitacionRepository;
 
-	@Override
-	public void insertar(Habitacion habitacion) {
-		// TODO Auto-generated method stub
-		this.habitacionRepository.insertar(habitacion);
-	}
-
-	@Override
-	public void actualizar(Habitacion habitacion) {
-		// TODO Auto-generated method stub
-		this.habitacionRepository.actualizar(habitacion);
-	}
-
-	@Override
-	public void eliminar(String id) {
-		// TODO Auto-generated method stub
-		this.habitacionRepository.eliminar(id);
-	}
-
-	@Override
-	public Habitacion buscar(String id) {
-		// TODO Auto-generated method stub
-		return this.habitacionRepository.buscar(id);
-	}
+	
 
 	@Override
 	public List<Habitacion> reporteTodo() {
