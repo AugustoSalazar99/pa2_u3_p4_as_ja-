@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 0 source folders to &apos;pa2_u2_p4_as_ja&apos;&#x0D;&#x0A;- Destination element: &apos;pa2_u2_p4_as_ja&apos;" description="Copy source folders" destination="=pa2_u2_p4_as_ja" flags="6" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyRoots" roots="0" stamp="1688513773606" version="1.0"/>
+</session>

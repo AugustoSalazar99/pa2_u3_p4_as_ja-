@@ -1,0 +1,75 @@
+package com.example.demo;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.example.demo.repository.modelo.Habitacion;
+import com.example.demo.repository.modelo.Hotel;
+import com.example.demo.service.IHotelService;
+
+@SpringBootApplication
+public class Pa2U3P4AsJaApplication implements CommandLineRunner {
+
+	@Autowired
+	private IHotelService hotelService;
+	public static void main(String[] args) {
+		SpringApplication.run(Pa2U3P4AsJaApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		
+	/*	
+		List<Hotel> listaHotel = this.hotelService.buscarInnerJoin();
+		
+		for (Hotel h : listaHotel) {
+			System.out.println(h.getNombre());
+			System.out.println("tiene habitaciones");
+			for (Habitacion ha : h.getHabitaciones()) {
+				System.out.println(ha.getNumero());
+			}
+			
+		}
+		
+	System.out.println("sql join fetch");
+	
+	List<Hotel> listaHotelf = this.hotelService.buscarJoinFetch();
+	for (Hotel h : listaHotelf) {
+		System.out.println(h.getNombre());
+		for (Habitacion ha : h.getHabitaciones()) {
+			System.out.println(ha.getNumero());
+			
+		}
+	}
+	*/
+		
+		
+		Hotel h = new Hotel();
+		h.setId(10);
+		h.setNombre("Hotel Otavalo");
+		h.setDireccion("prudencia");
+		
+		Habitacion ha = new Habitacion();
+		ha.setNumero("HA1");
+		ha.setValor(new BigDecimal(300));
+		ha.setValorIncluidoIVA(new BigDecimal(15));
+		
+		List<Habitacion> listha = new ArrayList<>();
+		listha.add(ha);
+		
+		
+		h.setHabitaciones(listha);
+		ha.setHotel(h);
+		this.hotelService.guardar(h);
+		System.out.println(ha.getValorIncluidoIVA());
+		
+	}
+
+}
